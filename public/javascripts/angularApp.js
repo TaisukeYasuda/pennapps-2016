@@ -46,8 +46,6 @@
         'auth',
         'posts',
       function($scope, $state, auth, posts) {
-        $scope.test = 'Hello world!';
-
         $scope.user = {};
 
         $scope.register = function(){
@@ -87,32 +85,12 @@
 
     }]);
 
-    app.controller('PostsCtrl', [
+    app.controller('ProfileCtrl', [
         '$scope',
-        'posts',
-        'post',
-      function($scope, posts, post) {
-
-        $scope.post = post;
-
-        $scope.incrementUpvotes = function(comment) {
-            posts.upvoteComment(post, comment);
-        }
-
-        $scope.addComment = function() {
-            if (!$scope.body || $scope.body === '')
-                return;
-
-            posts.addComment(post._id, {
-                body: $scope.body,
-                author: $scope.author || "Anonymous User",
-            }).success(function(comment) {
-                $scope.post.comments.push(comment);
-            });
-
-            $scope.body = '';
-            $scope.author = '';
-        }
+        '$state',
+        'auth',
+      function($scope, $state, auth) {
+        $scope.ride = {};
 
     }]);
 
