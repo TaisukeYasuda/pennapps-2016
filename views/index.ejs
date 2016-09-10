@@ -1,18 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <meta charset="utf-8">
+    <title>Pick Up</title>
+
+  	<!-- google fonts -->
+  	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+    <!-- jquery -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
+    <script src="../javascripts/angularApp.js"></script>
+    <link rel="stylesheet" href="../stylesheets/animate.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
 </head>
-<body>
+
+<body ng-app="mainApp" ng-controller="MainCtrl">
+<div class="top">
+	  <h1 id="title">Pick Me Up</h1>
+</div>
+<div class="container">
+  	<div class="login-box animated fadeInUp">
+    		<div class="box-header">
+    			   <h2>Sign In</h2>
+    		</div>
+    		<label for="username">Username</label>
+    		<br/>
+    		<input type="text" id="username">
+    		<br/>
+    		<label for="password">Password</label>
+    		<br/>
+    		<input type="password" id="password">
+    		<br/>
+    		<button type="submit" id="signin">Sign In</button>
+    		<br/>
+    		<a href="#"><p class="small">Forgot your password?</p></a>
+    		<p class="small">Not a member yet? <button type="submit" id="signup">Sign Up</button></p>
+  	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+    	$('#logo').addClass('animated fadeInDown');
+    	$("input:text:visible:first").focus();
+	});
+	$('#username').focus(function() {
+		$('label[for="username"]').addClass('selected');
+	});
+	$('#username').blur(function() {
+		$('label[for="username"]').removeClass('selected');
+	});
+	$('#password').focus(function() {
+		$('label[for="password"]').addClass('selected');
+	});
+	$('#password').blur(function() {
+		$('label[for="password"]').removeClass('selected');
+	});
+
+</script>
+<!--
 <div class="container">
 
     <div class="jumbotron text-center">
         <h1>Pick Up</h1>
+        <h1>{{test}}</h1>
         <a href="/login" class="btn btn-default">Login</a>
         <a href="/signup" class="btn btn-default">Signup</a>
 
@@ -22,5 +75,6 @@
     </div>
 
 </div>
+-->
 </body>
 </html>

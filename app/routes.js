@@ -1,3 +1,8 @@
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
+var jwt = require('express-jwt');
+var auth = jwt({secret: process.env.JWT_KEY, userProperty: 'payload'});
+
 module.exports = function(app, passport) {
 
     // =====================================
@@ -38,11 +43,21 @@ module.exports = function(app, passport) {
     });
 
     // process the login form
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+    app.post('/login', function(req, res, next) {
+        if(!req.body.email || !req.body.password){
+          return res.status(400).json({message: 'Please fill out all fields'});
+        }
+        passport.authenticate('local-login', function(err, user, info) {
+          if(err){ return next(err); }
+
+          if(user){
+            return res.json({token: user.generateJWT()});
+          } else {
+            return res.status(401).json(info);
+          }
+        })(req, res, next);
+      }
+    );
 
     // process the login form
     // app.post('/login', do all our passport stuff here);
@@ -58,11 +73,23 @@ module.exports = function(app, passport) {
     });
 
     // process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+    app.post('/signup', function(req, res, next) {
+      if(!req.body.email || !req.body.password){
+        return res.status(400).json({message: 'Please fill out all fields'});
+      }
+
+      var user = new User();
+
+      user.local = {};
+      user.local.email = req.body.email;
+      user.local.password = user.generateHash(req.body.password);
+
+      user.save(function (err){
+        if(err){ return next(err); }
+
+        return res.json({token: user.generateJWT()})
+      });
+    });
 
     // process the signup form
     // app.post('/signup', do all our passport stuff here);
