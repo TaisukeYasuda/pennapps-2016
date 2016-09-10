@@ -1,4 +1,6 @@
 
+
+
 body {
     background: url("../images/6.jpg") no-repeat center center fixed;
     background-size: cover;
@@ -81,12 +83,14 @@ p.small {
     padding-bottom: 150px;
 }
 
-.login-box1 {
+.info-box {
     background-color: white;
-    width: 400px;
-    margin: 0 auto;
-    position: relative;
-    padding-bottom: 30px;
+    width: 300px;
+    height: 600px;
+    margin-top:60px;
+    margin-right: 60px;
+    /*position: relative;*/
+    /*padding-bottom: 30px;*/
     border-radius: 5px;
     box-shadow: 0 5px 50px rgba(0,0,0,0.4);
     text-align: center;
@@ -94,7 +98,7 @@ p.small {
 }
 
 
-.login-box1 .box-header {
+.info-box .box-header {
     background-color: #EE6E73;
     margin-top: -20px;
     border-radius: 5px 5px 0 0;
@@ -102,17 +106,25 @@ p.small {
 
 
 
-.login-box1 label {
+
+/* When the input field gets focus, change its width to 100% */
+/*input[type=text]:focus {
+    width: 100%;
+}*/
+
+.info-box label {
     font-weight: 700;
-    font-size: .8em;
+    font-size: 1.2em;
     color: #888;
     letter-spacing: 1px;
     text-transform: uppercase;
     line-height: 2em;
 }
 
-.login-box1 input {
+.info-box input {
     margin-bottom: 20px;
+    width: 250px;
+    height: 35px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 2px;
@@ -120,34 +132,38 @@ p.small {
     color: #888;
 }
 
-.login-box1 input:focus {
+.info-box input:focus {
     outline: none;
     border-color: #EE6E73;
+    width: 250px;
+    height: 35px;
     transition: 0.5s;
     color: #EE6E73;
 }
 
-.login-box1 button {
+.info-box button {
     margin-top: 0px;
     border: 0;
     border-radius: 2px;
     color: white;
     padding: 10px;
+    width: 270px;
+    height: 50px;
     text-transform: uppercase;
     font-weight: 400;
-    font-size: 0.7em;
+    font-size: 1.2em;
     letter-spacing: 1px;
     background-color: #EE6E73;
     cursor:pointer;
     outline: none;
 }
 
-.login-box1 button:hover {
+.info-box button:hover {
     opacity: 0.7;
     transition: 0.5s;
 }
 
-.login-box1 button:hover {
+.info-box button:hover {
     opacity: 0.7;
     transition: 0.5s;
 }
@@ -155,81 +171,17 @@ p.small {
 
 
 
-
-
-
-
-
-.login-box {
-    background-color: white;
-    width: 400px;
-    margin: 0 auto;
-    position: relative;
-    padding-bottom: 30px;
-    border-radius: 5px;
-    box-shadow: 0 5px 50px rgba(0,0,0,0.4);
-    text-align: center;
+.map-box {
+    padding-left: 60px;
+    padding-top: 60px;
     float: left;
 }
 
-.login-box .box-header {
-    background-color: #EE6E73;
-    margin-top: -20px;
-    border-radius: 5px 5px 0 0;
-}
 
-
-
-
-.login-box label {
-    font-weight: 700;
-    font-size: .8em;
-    color: #888;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    line-height: 2em;
-}
-
-.login-box input {
-    margin-bottom: 20px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    font-size: .9em;
-    color: #888;
-}
-
-.login-box input:focus {
-    outline: none;
-    border-color: #EE6E73;
-    transition: 0.5s;
-    color: #EE6E73;
-}
-
-.login-box button {
-    margin-top: 0px;
-    border: 0;
-    border-radius: 2px;
-    color: white;
-    padding: 10px;
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 0.7em;
-    letter-spacing: 1px;
-    background-color: #EE6E73;
-    cursor:pointer;
-    outline: none;
-}
-
-.login-box button:hover {
-    opacity: 0.7;
-    transition: 0.5s;
-}
-
-.login-box button:hover {
-    opacity: 0.7;
-    transition: 0.5s;
-}
+#map {
+        width: 800px;
+        height: 600px;
+     }
 
 .selected {
     color: #EE6E73!important;
@@ -242,18 +194,4 @@ p.small {
   -webkit-animation-delay: 0.75s;
 }*/
 
-.container{
-  -webkit-animation-duration: 0.75s;
-  -webkit-animation-delay: 0s;
-}
 
-.login-box {
-  -webkit-animation-duration: 0.75s;
-  -webkit-animation-delay: 0s;
-}
-
-
-.login-box1 {
-  -webkit-animation-duration: 0.75s;
-  -webkit-animation-delay: 0s;
-}
