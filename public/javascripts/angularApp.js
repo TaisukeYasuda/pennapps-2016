@@ -92,6 +92,9 @@
       function($scope, $state, auth) {
         $scope.ride = {};
 
+        $scope.requestRide = function() {
+
+        }
     }]);
 
     app.factory('posts', ['$http', function($http) {
