@@ -33,11 +33,12 @@ module.exports = function(passport) {
         clientID: configAuth.lyftAuth.clientID,
         clientSecret: configAuth.lyftAuth.clientSecret,
         callbackURL: configAuth.lyftAuth.callbackURL,
-        state: true
+        state: true,
+        passReqToCallback: true
       },
-      function(accessToken, refreshToken, profile, done) {
+      function(req, accessToken, refreshToken, profile, done) {
         process.nextTick(function() {
-
+          if (!req.user) {
                 // try to find the user based on their lyft id
                 var user = profile;
                 user.lyft = {accessToken: accessToken};
@@ -49,7 +50,7 @@ module.exports = function(passport) {
                         return done(null, user);
                     } else {
                         // if the user isnt in our database, create a new user
-                        var newUser          = new User();
+                        var newUser        = new User();
 
                         // set all of the relevant information
                         newUser.lyft.id    = profile.id;
@@ -62,7 +63,22 @@ module.exports = function(passport) {
                         });
                     }
                 });
-            });
+        } else {
+          // user already exists and is logged in, we have to link accounts
+          var user            = req.user; // pull the user out of the session
+
+          // update the current users facebook credentials
+          user.lyft = {accessToken: accessToken};
+          user.lyft.id = profile.id;
+
+          // save the user
+          user.save(function(err) {
+              if (err)
+                  throw err;
+              return done(null, user);
+          });
+        }
+      });
 
     }));
 

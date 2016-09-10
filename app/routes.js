@@ -16,6 +16,17 @@ module.exports = function(app, passport) {
         res.redirect('/profile');
     });
 
+    app.get('/connect/lyft',
+      passport.authorize('lyft', { scope: ['public','profile'] }
+    ));
+
+    app.get('/connect/lyft/callback',
+        passport.authorize('lyft', {
+            successRedirect : '/profile',
+            failureRedirect : '/'
+        }
+    ));
+
     // =====================================
     // LOGIN ===============================
     // =====================================
