@@ -10,11 +10,21 @@
                     url: '/home',
                     templateUrl: '/home.html',
                     controller: 'MainCtrl',
-                    resolve: {
-                        postPromise: ['posts', function(posts) {
-                            return posts.getAll();
-                        }],
-                    },
+                    onEnter: ['$state', 'auth', function($state, auth) {
+                      if (auth.isLoggedIn()) {
+                        $state.go('profile')
+                      }
+                    }]
+                })
+                .state('profile', {
+                    url: '/profile',
+                    templateUrl: '/profile.html',
+                    controller: 'ProfileCtrl',
+                    onEnter: ['$state', 'auth', function($state, auth) {
+                      if (!auth.isLoggedIn()) {
+                        $state.go('home')
+                      }
+                    }]
                 })
                 .state('posts', {
                     url: '/posts/{id}',
@@ -32,9 +42,29 @@
 
     app.controller('MainCtrl', [
         '$scope',
+        '$state',
+        'auth',
         'posts',
-      function($scope, posts) {
+      function($scope, $state, auth, posts) {
         $scope.test = 'Hello world!';
+
+        $scope.user = {};
+
+        $scope.register = function(){
+          auth.register($scope.user).error(function(error){
+            $scope.error = error;
+          }).then(function(){
+            $state.go('profile');
+          });
+        };
+
+        $scope.logIn = function(){
+          auth.logIn($scope.user).error(function(error){
+            $scope.error = error;
+          }).then(function(){
+            $state.go('profile');
+          });
+        };
 
         $scope.posts = posts.posts;
 

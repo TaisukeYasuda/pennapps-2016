@@ -17,10 +17,33 @@
     <link rel="stylesheet" href="../stylesheets/style.css">
 </head>
 
-<body ng-app="mainApp" ng-controller="MainCtrl">
+<body ng-app="mainApp">
   <div class="row">
+    <ui-view></ui-view>
+  </div>
+
+  <script type="text/ng-template" id="/home.html">
     <div class="top">
     	  <h1 id="title">Pick Me Up {{test}}</h1>
+    </div>
+    <div class="container">
+      	<form ng-submit="logIn()" class="login-box animated fadeInUp">
+        		<div class="box-header">
+        			   <h2>Sign In</h2>
+        		</div>
+        		<label for="email">Email</label>
+        		<br/>
+        		<input ng-model="user.email" type="text" id="email">
+        		<br/>
+        		<label for="password">Password</label>
+        		<br/>
+        		<input ng-model="user.password" type="password" id="password">
+        		<br/>
+        		<button type="submit" id="signin">Sign In</button>
+        		<br/>
+        		<a href="#"><p class="small">Forgot your password?</p></a>
+        		<p class="small">Not a member yet? <button id="signup">Sign Up</button></p>
+      	</form>
     </div>
 
     <script>
@@ -28,10 +51,10 @@
         	$('#logo').addClass('animated fadeInDown');
         	$("input:text:visible:first").focus();
     	});
-    	$('#username').focus(function() {
+    	$('#email').focus(function() {
     		$('label[for="email"]').addClass('selected');
     	});
-    	$('#username').blur(function() {
+    	$('#email').blur(function() {
     		$('label[for="email"]').removeClass('selected');
     	});
     	$('#password').focus(function() {
@@ -42,22 +65,11 @@
     	});
 
     </script>
-  </div>
-<!--
-<div class="container">
 
-    <div class="jumbotron text-center">
-        <h1>Pick Up</h1>
-        <h1>{{test}}</h1>
-        <a href="/login" class="btn btn-default">Login</a>
-        <a href="/signup" class="btn btn-default">Signup</a>
+  </script>
 
-        <p>Login or Register with:</p>
-        <a href="/auth/lyft" class="btn btn-danger">Lyft</a>
-
-    </div>
-
-</div>
--->
+  <script type="text/ng-template" id="/profile.html">
+    <h1>Profile!</h1>
+  </script>
 </body>
 </html>

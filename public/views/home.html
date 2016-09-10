@@ -1,0 +1,42 @@
+<div class="top">
+	  <h1 id="title">Pick Me Up</h1>
+</div>
+<div class="container">
+  	<form class="login-box animated fadeInUp">
+    		<div class="box-header">
+    			   <h2>Sign In</h2>
+    		</div>
+    		<label for="email">Email</label>
+    		<br/>
+    		<input type="text" id="email">
+    		<br/>
+    		<label for="password">Password</label>
+    		<br/>
+    		<input type="password" id="password">
+    		<br/>
+    		<button type="submit" id="signin">Sign In</button>
+    		<br/>
+    		<a href="#"><p class="small">Forgot your password?</p></a>
+    		<p class="small">Not a member yet? <button type="submit" id="signup">Sign Up</button></p>
+  	</form>
+</div>
+
+<script>
+	$(document).ready(function () {
+    	$('#logo').addClass('animated fadeInDown');
+    	$("input:text:visible:first").focus();
+	});
+	$('#username').focus(function() {
+		$('label[for="username"]').addClass('selected');
+	});
+	$('#username').blur(function() {
+		$('label[for="username"]').removeClass('selected');
+	});
+	$('#password').focus(function() {
+		$('label[for="password"]').addClass('selected');
+	});
+	$('#password').blur(function() {
+		$('label[for="password"]').removeClass('selected');
+	});
+
+</script>

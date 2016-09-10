@@ -5,6 +5,11 @@ var auth = jwt({secret: process.env.JWT_KEY, userProperty: 'payload'});
 
 module.exports = function(app, passport) {
 
+    // lyft webhook endpoint
+    app.post('/webhook/lyft', function(req, res) {
+        console.log(req);
+    });
+
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
